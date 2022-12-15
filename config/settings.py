@@ -39,7 +39,9 @@ DJANGO_APP = [
     "django.contrib.staticfiles",
 ]
 
-PROJECT_APP = []
+PROJECT_APP = [
+    "users.apps.UsersConfig"
+]
 
 THIRD_PART_APP = []
 
@@ -104,6 +106,8 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+
+AUTH_USER_MODEL = "users.User"
 
 
 # Internationalization
