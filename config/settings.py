@@ -44,6 +44,7 @@ PROJECT_APP = [
     "rooms.apps.RoomsConfig",
     "common.apps.CommonConfig",
     "reviews.apps.ReviewsConfig",
+    "bookings.apps.BookingsConfig",
 ]
 
 THIRD_PART_APP = []
