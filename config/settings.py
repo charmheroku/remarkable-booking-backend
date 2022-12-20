@@ -46,6 +46,7 @@ PROJECT_APP = [
     "reviews.apps.ReviewsConfig",
     "bookings.apps.BookingsConfig",
     "medias.apps.MediasConfig",
+    "direct_messages.apps.DirectMessagesConfig",
 ]
 
 THIRD_PART_APP = []
