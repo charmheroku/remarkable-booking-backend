@@ -43,6 +43,7 @@ PROJECT_APP = [
     "users.apps.UsersConfig",
     "rooms.apps.RoomsConfig",
     "common.apps.CommonConfig",
+    "reviews.apps.ReviewsConfig",
 ]
 
 THIRD_PART_APP = []
