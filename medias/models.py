@@ -13,6 +13,7 @@ class Photo(CommonModel):
         on_delete=models.CASCADE,
         null=True,
         blank=True,
+        related_name="photos",
     )
 
     def __str__(self):
