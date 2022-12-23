@@ -49,7 +49,9 @@ PROJECT_APP = [
     "direct_messages.apps.DirectMessagesConfig",
 ]
 
-THIRD_PART_APP = []
+THIRD_PART_APP = [
+    "rest_framework",
+]
 
 INSTALLED_APPS = DJANGO_APP + PROJECT_APP + THIRD_PART_APP
 
