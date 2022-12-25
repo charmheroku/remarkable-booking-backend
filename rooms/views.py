@@ -40,6 +40,19 @@ class Rooms(APIView):
         else:
             raise NotAuthenticated
 
+
+class RoomDetail(APIView):
+    def get_object(self, pk):
+        try:
+            return Room.objects.get(pk=pk)
+        except Room.DoesNotExist:
+            raise NotFound
+
+    def get(self, request, pk):
+        room = self.get_object(pk)
+        serializer = RoomDetailSerializer(room)
+        return Response(serializer.data)
+
     def put(self, request, pk):
         room = self.get_object(pk)
         if not request.user.is_authenticated:
@@ -79,19 +92,6 @@ class Rooms(APIView):
             raise PermissionDenied
         room.delete()
         return Response(status=HTTP_204_NO_CONTENT)
-
-
-class RoomDetail(APIView):
-    def get_object(self, pk):
-        try:
-            return Room.objects.get(pk=pk)
-        except Room.DoesNotExist:
-            raise NotFound
-
-    def get(self, request, pk):
-        room = self.get_object(pk)
-        serializer = RoomDetailSerializer(room)
-        return Response(serializer.data)
 
 
 class Amenities(APIView):
