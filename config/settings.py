@@ -117,6 +117,12 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = "users.User"
 
+MEDIA_ROOT = "uploads"
+
+MEDIA_URL = "user-uploads/"
+
+PAGE_SIZE = 3
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
