@@ -50,6 +50,5 @@ class PublicBookingSerializer(serializers.ModelSerializer):
             "pk",
             "check_in",
             "check_out",
-            "experience_time",
             "guests",
         )

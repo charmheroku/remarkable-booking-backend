@@ -129,7 +129,7 @@ PAGE_SIZE = 3
 
 LANGUAGE_CODE = "ru"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Europe/Ljubljana"
 
 USE_I18N = True
 
