@@ -2,11 +2,13 @@ databases:
   - name: remarkable
     databaseName: remarkable
     user: remarkable
+    
 
 services:
   - type: web
     name: remarkable
     env: python
+    region: frankfurt
     buildCommand: "./build.sh"
     startCommand: "gunicorn config.wsgi:application"
     envVars:
