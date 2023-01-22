@@ -1,18 +1,18 @@
 databases:
-  - name: remarkable-booking
-    databaseName: remarkable-booking
-    user: remarkable-booking
+  - name: remarkable
+    databaseName: remarkable
+    user: remarkable
 
 services:
   - type: web
-    name: remarkable-booking
+    name: remarkable
     env: python
     buildCommand: "./build.sh"
     startCommand: "gunicorn config.wsgi:application"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: remarkable-booking
+          name: remarkable
           property: connectionString
       - key: SECRET_KEY
         generateValue: true
