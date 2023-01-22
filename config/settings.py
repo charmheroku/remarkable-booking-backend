@@ -14,6 +14,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("SECRET_KEY")
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -43,6 +44,7 @@ PROJECT_APP = [
 
 THIRD_PART_APP = [
     "rest_framework",
+    "corsheaders",
 ]
 
 INSTALLED_APPS = DJANGO_APP + PROJECT_APP + THIRD_PART_APP
@@ -50,6 +52,7 @@ INSTALLED_APPS = DJANGO_APP + PROJECT_APP + THIRD_PART_APP
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -137,3 +140,15 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+CORS_ALLOWED_ORIGINS = ["http://127.0.0.1:3000"]
+
+CORS_ALLOW_CREDENTIALS = True
+
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:3000"]
+
+# Smoobu data
+
+SMOOBU_KEY = env("SMOOBU_KEY")
+APARTMENTS_IDS = env("APARTMENTS_IDS")
+CUSTOMER_ID = env("CUSTOMER_ID")

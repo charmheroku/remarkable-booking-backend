@@ -8,6 +8,7 @@ class AmenitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Amenity
         fields = (
+            "pk",
             "name",
             "description",
         )
@@ -21,6 +22,8 @@ class RoomDetailSerializer(serializers.ModelSerializer):
         many=True,
     )
     rating = serializers.SerializerMethodField()
+    rating_count = serializers.SerializerMethodField()
+    page_reviews_count = serializers.SerializerMethodField()
     is_owner = serializers.SerializerMethodField()
     photos = PhotoSerializer(many=True, read_only=True)
 
@@ -29,7 +32,13 @@ class RoomDetailSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
     def get_rating(self, room):
-        return room.rating()
+        return room.rating()[1]
+
+    def get_rating_count(self, room):
+        return room.rating()[0]
+
+    def get_page_reviews_count(self, room):
+        return room.rating()[2]
 
     def get_is_owner(self, room):
         request = self.context["request"]

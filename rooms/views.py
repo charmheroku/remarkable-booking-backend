@@ -1,3 +1,4 @@
+import requests
 from django.db import transaction
 from django.conf import settings
 from django.utils import timezone
@@ -204,6 +205,29 @@ class RoomBookings(APIView):
             return Response(serializer.errors)
 
 
+class CheckAvailable(APIView):
+    def get(self, request):
+        check_in = request.query_params.get("check_in")
+        check_out = request.query_params.get("check_out")
+        data = {
+            "arrivalDate": check_in,
+            "departureDate": check_out,
+            "apartments": settings.APARTMENTS_IDS,
+            "customerId": settings.CUSTOMER_ID,
+        }
+        url = "https://login.smoobu.com/booking/checkApartmentAvailability"
+        room_available = requests.post(
+            url,
+            json=data,
+            headers={
+                "Api-Key": settings.SMOOBU_KEY,
+                "cache-control": "no-cache",
+            },
+        )
+        room_available = room_available.json()
+        return Response(room_available)
+
+
 class Amenities(APIView):
     def get(self, request):
         all_amenities = Amenity.objects.all()
@@ -215,7 +239,7 @@ class Amenities(APIView):
         if serializer.is_valid():
             amenity = serializer.save()
             return Response(
-                 serializers.AmenitySerializer(amenity).data,
+                serializers.AmenitySerializer(amenity).data,
             )
         else:
             return Response(serializer.errors)

@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from common.models import CommonModel
 
 
@@ -71,7 +72,7 @@ class Room(CommonModel):
             total_rating = 0
             for review in room.reviews.all().values("rating"):
                 total_rating += review["rating"]
-            return round(total_rating / count, 2)
+            return [count, round(total_rating / count, 2), round(count/settings.PAGE_SIZE)]
 
 
 class Amenity(CommonModel):
