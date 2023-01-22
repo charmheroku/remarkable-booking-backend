@@ -1,0 +1,20 @@
+databases:
+  - name: remarkable-booking
+    databaseName: remarkable-booking
+    user: remarkable-booking
+
+services:
+  - type: web
+    name: remarkable-booking
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn config.wsgi:application"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: remarkable-booking
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
