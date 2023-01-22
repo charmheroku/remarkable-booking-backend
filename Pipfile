@@ -8,8 +8,7 @@ flake8 = "*"
 black = "*"
 
 [packages]
-django = "*"
-pillow = "*"
+django = "==4.0"
 djangorestframework = "*"
 django-environ = "*"
 django-cors-headers = "*"
